@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+{% block content %}
+  <h2>JIRA ROUTINE JOB</h2>
+  {% if success %}
+    <p>You successfully create and post bugs to Jira.</p>
+    <p>The ticket ID are :</p>
+      <table style="width:100%">
+        {% for ticket_id in tickets_id %}
+            <tr><a  href="https://jira.emdeon.net/browse/{{ticket_id}}">{{ ticket_id }}<div></tr></a>
+      {% endfor %}
+      </table>
+  {% else %}  
+    <p>1.You can download 
+    <a href="{{ url_for('downloadBugExample')}}" name="dlbutton">A Bug Example </a>
+      to post bugs by uploading a file .</p>
+    <p>2.You can download 
+    <a href="{{ url_for('downloadStepExample')}}" name="dlbutton">A Step Example </a>
+      to post steps by uploading a file .</p>
+
+
+    {% for message in form.jira_name.errors %}
+      <div class="flash">{{ message }}</div>
+    {% endfor %}
+    
+    {% for message in form.jira_password.errors %}
+      <div class="flash">{{ message }}</div>
+    {% endfor %}
+    {% for message in form.upload.errors %}
+      <div class="flash">{{ message }}</div>
+    {% endfor %}
+    {% if bugsizeError %}
+      <div class="flash">Please check </p>1.Bug description size should match bug assignee size</p>
+      <p>2. No null assignee or bug description</p></div>
+    {% endif %}
+    {% if stepsizeError %}
+      <div class="flash">Please check </p>1.test step size should match test result size</p>
+      <p>2.No null test step or test result</p></div>
+    {% endif %}
+    {% if ticketTypeError %}
+      <div class="flash">Please check every ticket you want to post is "Test" type, not user story. </p></div>
+    {% endif %}
+    {% if assigneeTypeError %}
+      <div class="flash">Please check assignee exists. </p></div>
+    {% endif %}
+
+
+    
+    
+    <form action="{{ url_for('uploadfile') }}" method=post enctype=multipart/form-data onsubmit="loading()">
+      {{ form.hidden_tag() }}
+      
+      {{ form.jira_name.label }}
+      {{ form.jira_name }}
+      <br></br>
+      {{ form.jira_password.label }}
+      {{ form.jira_password }}
+      <br></br>
+      {{ form.select_type.label}}
+      {{ form.select_type }}
+      <br></br>
+      {{ form.upload.label }}
+      {{ form.upload()}}
+      <br></br>
+      {{ form.submit()}}
+
+    </form>
+
+  {% endif %}
+</form>
+{% endblock %} 

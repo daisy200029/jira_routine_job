@@ -1,0 +1,12 @@
+@des
+[Environment]
+Testing in chrome through URL: http://10.219.119.29:3000/login
+
+@summary
+[regression] unable to click the button
+
+@assignee
+dliu
+
+
+!exit

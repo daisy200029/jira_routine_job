@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Flask App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+  </head>
+  <body>
+
+  <header>
+    <div class="container">
+      <h1 class="logo">Flask App</h1>
+      <nav>
+        <ul class="menu">
+          <li><a href="{{ url_for('uploadfile') }}">Home</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript">
+        function loading(){
+            $("#loading").show();
+            $("#content").hide();       
+        }
+  </script>
+  <div id="loading"></div>
+  <div id="content" class="container">
+    {% block content %}
+    {% endblock %}
+  </div>
+
+  </body>
+</html>

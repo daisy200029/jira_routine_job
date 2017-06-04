@@ -1,0 +1,44 @@
+@ticket
+CHPS-2982
+
+@step
+**Add A User with 1 Step**
+1. login
+2. click user manager 
+3. click add a user
+4. FIll up requrred fields user name, email 
+5. Fill up non required field 
+6. clcik save+next step
+7. click cancel
+
+@result
+1. 2533
+2. show user report page
+3. show add user
+4. show the input text
+5. show input text
+6.show aad new user -step 2 of 3
+7.add user successfully 
+
+@ticket
+CHPS-1882
+@data
+hello
+@step
+**Add A User with Null requirement field**
+1. login
+2. click user manager 
+3. click add a user
+4. FIll  up all required field
+5. make username / email  empty
+6. click save
+
+@result
+1. 2533
+2. show user report page
+3. show add user
+4. show input email
+5. username empty
+6. should show username/email can not be empty
+
+!exit
