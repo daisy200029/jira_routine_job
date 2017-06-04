@@ -90,7 +90,7 @@ form label {
 form input#jira_name,
 form input#jira_password,
 form input#submit,
-form input#select_type,
+form #select_type,
 form input#upload {
   width: 400px;
   background-color: #fafafa;
