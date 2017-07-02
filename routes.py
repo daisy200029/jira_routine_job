@@ -39,7 +39,7 @@ def uploadfile():
 				routine=jira_routine(form.jira_name.data,form.jira_password.data)
 				print "authentication success"
 			except Exception as e:
-				return "authentication fail"
+				return render_template('home.html', form=form, authenticationError=True)
 			else:
 				if form.select_type.data == 'bug':
 					try:
@@ -84,4 +84,4 @@ def downloadStepExample():
 
 
 if __name__ == '__main__':
-  app.run(debug=True)
+  app.run(debug=True, host='0.0.0.0',threaded=True)

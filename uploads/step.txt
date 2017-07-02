@@ -1,21 +1,26 @@
 @ticket
-CHPS-4065
+CHPS-2982
 
 @step
-hello
+hello!
+
 
 @result
-hi
+hey
 
 @ticket
-CHPS-4065
+CHPS-1882
+
+@data
+hello!!
 
 @step
-hello
+**hey**
+
 
 @result
-hi~~
-
+lalaa
 
 
 !exit
+

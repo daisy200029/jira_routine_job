@@ -64,13 +64,7 @@ class bug_parser:
 
 
 if __name__ == "__main__":
-		# try:
-		# 	routine1=jira_routine("dliu","@WSX3edc")
-		# 	print "success"
-		# except Exception as e:
-		# 	print "fail"
-		# 	sys.exit()
-		# try:
+
 		file_path=os.path.join(
             os.path.dirname(os.path.abspath(__file__)), 'uploads', 'bug.txt')
 		parser1=bug_parser(file_path)

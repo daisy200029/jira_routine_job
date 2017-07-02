@@ -42,6 +42,10 @@
     {% if assigneeTypeError %}
       <div class="flash">Please check assignee exists. </p></div>
     {% endif %}
+    {% if authenticationError %}
+      <div class="flash">Please check network connect or invalid password or login JIRA website to confirm you are not robot. </p></div>
+    {% endif %}
+
 
 
     

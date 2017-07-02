@@ -293,8 +293,8 @@ class jira_routine:
 
 
 if __name__ == "__main__":
-	username="dliu2"
-	password="@WSX3edc"
+	username="your username"
+	password="your password"
 	routine1=jira_routine(username,password)
 	# #==============================================================================================================================
 	# #Create web portal test and story
