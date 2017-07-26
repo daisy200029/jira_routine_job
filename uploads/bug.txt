@@ -1,0 +1,24 @@
+@summary
+Unable to restrict country field in modify address correction exclusion
+
+@des
+[Environment]
+Testing in chrome through URL: http://10.219.119.29:3000/login
+[Steps]
+1.login 10.219.119.29:3000 with nox/test/context1
+2. go to http://10.219.119.29:3000/clientAdministration/CTT
+3. click first ID
+4. click modify
+5. fill up required field and make country field "US123" 
+
+
+
+[Result] 
+1. success submitted 
+[Expect]
+1. error msg shoud be 'Country is mandatory and must be alpha characters'
+
+@assignee
+dliu	
+
+!exit
