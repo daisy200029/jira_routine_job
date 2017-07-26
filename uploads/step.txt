@@ -8,11 +8,8 @@ CZ-9198
 
 
 @result
-Bridge will trigger:
+hey
 
-Place claim on Hold with Reason Code HD4439
-
-Audit:Place all Medicaid NY (D12K3500) claims with Type of Bill 131 or 141 and CPT/HCPCS Codes 84439 and 84443 present on any Service Line on Hold with Reason Code HD4439
 
 @ticket
 CZ-9198
@@ -38,3 +35,4 @@ hello
 6. should show username/email can not be empty
 
 !exit
+

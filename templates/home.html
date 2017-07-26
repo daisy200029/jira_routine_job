@@ -5,7 +5,7 @@
     <p>You successfully create and post bugs to Jira.</p>
     <p>The ticket ID are :</p>
       <table style="width:100%">
-        {% for ticket_id in tickets_id %}
+        {% for ticket_id  in tickets_id %}
             <tr><a  href="https://jira.emdeon.net/browse/{{ticket_id}}">{{ ticket_id }}<div></tr></a>
       {% endfor %}
       </table>

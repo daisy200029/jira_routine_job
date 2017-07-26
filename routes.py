@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, flash, send_from_directory
+from flask import Flask, render_template, request, flash, send_from_directory, redirect,  url_for, session
 from forms import ContactForm
 from werkzeug import secure_filename
 from bug_parser import bug_parser
@@ -19,11 +19,14 @@ def upload_and_save_file(form):
 	return file_path
 
 
-# @app.route('/test', methods=['GET'])
-# def test():
-# 	tickets_id=["CHPS-1245","CHPS-4565"]
-# 	return render_template('home.html', success=True , tickets_id=tickets_id)
 
+@app.route('/test_step_suceess')
+def test_step_suceess():
+    return render_template('home.html', success=True , tickets_id=session['tickets_id'])
+
+@app.route('/bug_success')
+def bug_suceess():
+    return render_template('home.html', success=True , tickets_id=session['tickets_id'])
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -46,11 +49,11 @@ def uploadfile():
 					else:
 						try:
 							tickets_id=routine.create_bug(assignee=parser.bug_assignee, summary=parser.bug_summary,description=parser.bug_des)
-						# tickets_id=["CHPS-1245","CHPS-4565"]
 						except Exception as e:
 							return render_template('home.html', form=form, AssigneeTypeError=True)
 						else:
-							return render_template('home.html', success=True , tickets_id=tickets_id)
+							session['tickets_id'] = tickets_id
+							return  redirect(url_for('bug_suceess'))
 				if form.select_type.data == 'test_step':
 					try:			
 						parser=step_parser(file_path)
@@ -59,11 +62,11 @@ def uploadfile():
 					else:
 						try:
 							tickets_id=routine.post_zephyr_teststep(ticket=parser.test_tickets,test_step=parser.test_step,test_data=parser.test_data,test_result=parser.test_result)
-							# tickets_id=["CHPS-1245","CHPS-4565"]
 						except Exception as e:
 							return render_template('home.html', form=form, ticketTypeError=True)
 						else:
-							return render_template('home.html', success=True , tickets_id=tickets_id)
+							session['tickets_id'] = tickets_id
+							return  redirect(url_for('test_step_suceess'))
 		else:
 			flash('All fields are required.')
 			return render_template('home.html', form=form)				
