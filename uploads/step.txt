@@ -1,29 +1,40 @@
 @ticket
-CHPS-2982
+CZ-9198
 
 @step
-hello!
+1. Current Payer is Medicaid NY (D12K3500)
+2. Bill type is 131
+3. CPT/HCPCS Codes 84439 and 84443 are present on any Service Line
 
 
 @result
-hey
+Bridge will trigger:
 
+Place claim on Hold with Reason Code HD4439
 
-
-
+Audit:Place all Medicaid NY (D12K3500) claims with Type of Bill 131 or 141 and CPT/HCPCS Codes 84439 and 84443 present on any Service Line on Hold with Reason Code HD4439
 
 @ticket
-CHPS-1882
+CZ-9198
 
 @data
-hello!!
+hello
 
 @step
-**hey**
-
+**Add A User with Null requirement field**
+1. login
+2. click user manager 
+3. click add a user
+4. FIll  up all required field
+5. make username / email  empty
+6. click save
 
 @result
-lalaa
-
+1. 2533
+2. show user report page
+3. show add user
+4. show input email
+5. username empty
+6. should show username/email can not be empty
 
 !exit

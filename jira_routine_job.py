@@ -204,6 +204,12 @@ class jira_routine:
 			self.jira.add_attachment(issue=jiraissue, attachment=filepath)
 			print "successfully upload file attachment" 
 
+		def  add_attachments(self, tickets, filepath):
+			for ticket in  tickets :
+				jiraissue = self.jira.issue(ticket)
+				self.jira.add_attachment(issue=jiraissue, attachment=filepath)
+			print "successfully attach files!"
+
 
 		def get_zephyr_teststep(self,ticket):
 			jiraissue = self.jira.issue(ticket)
@@ -290,12 +296,27 @@ class jira_routine:
 			r=r.json()
 			# print "successfully delete "+execution_id
 			print r
+		def post_work_log(self,list_issue):
+			size=len(list_issue)
+			data={
+					  "comment": "automation script",
+					  "timeSpent": "3h 10m"
+				}
+			for issue_id  in  list_issue :
+				r = self.jira._session.post(self.jira_server+'rest/api/2/issue/'+issue_id+'/worklog',json=data,verify=False)
+				print "successfully post work log"
+
+
 
 
 if __name__ == "__main__":
-	username="your username"
-	password="your password"
+	username="dliu"
+	password="@WSX3edc"
 	routine1=jira_routine(username,password)
+	# #==============================================================================================================================
+	# EX: create work log
+	# tickets=["CHPS-4688","CHPS-4689"]
+	# routine1.post_work_log(list_issue=tickets)
 	# #==============================================================================================================================
 	# #Create web portal test and story
 	# tickets=["CHPS-1176"]
@@ -306,7 +327,8 @@ if __name__ == "__main__":
 	# routine1.create_bug(assignee_list, summary_list,description_list,routine1.web_portal_sprint_id, routine1.webportal_project_version, routine1.webportal_project_component)
 	# #==============================================================================================================================
 	# #EX: add attachment
-	#routine1.add_attachment("CHPS-2981", 'test.pdf')
+	#tickets=["CHPS-4983","CHPS-4984","CHPS-4985","CHPS-4986"]
+	#routine1.add_attachments(tickets, 'C:\TestScripts\RobotFramework\\test_cases\web_portal\client_administration\client_setting_editor\client_setting_group_rules\\client_setting_group_rules_testcase.html')
 	# routine1.add_attachment("CHPS-2981", 'C:\\test.pdf')
 	# #==============================================================================================================================
 	# #EX: get zephyr teststp by ticket key
