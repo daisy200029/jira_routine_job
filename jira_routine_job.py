@@ -332,6 +332,14 @@ class jira_routine:
 			print "successfully change user story status to done"		
 
 
+		def story_status_update_and_log_work(self,list_issue):
+			self.update_story_ticket_status(list_issue)
+			self.post_work_log(list_issue)
+
+		def zephr_status_update_and_log_work(self,list_issue):
+			self.update_zephr_ticket_status(list_issue)
+			self.post_work_log(list_issue)
+
 
 if __name__ == "__main__":
 	username="dliu"
@@ -339,9 +347,8 @@ if __name__ == "__main__":
 	routine1=jira_routine(username,password)
 	# #==============================================================================================================================
 	# EX: post ticket transition
-	tickets=["CHPS-4979"]
-	routine1.update_story_ticket_status(list_issue=tickets)
-	# #==============================================================================================================================
+	# tickets=["CHPS-4979"]
+	# routine1.story_status_update_and_log_work(list_issue=tickets)
 	# #==============================================================================================================================
 	# EX: create work log
 	# tickets=["CHPS-4978","CHPS-4979"]
