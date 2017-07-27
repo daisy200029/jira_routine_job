@@ -306,6 +306,27 @@ class jira_routine:
 				r = self.jira._session.post(self.jira_server+'rest/api/2/issue/'+issue_id+'/worklog',json=data,verify=False)
 				print "successfully post work log"
 
+		def update_zephr_ticket_status(self,list_issue):
+			size=len(list_issue)
+			data={
+
+					"transition": {"id": "31"} 
+					 
+				}
+			for issue_id  in  list_issue :
+				r = self.jira._session.post(self.jira_server+'rest/api/2/issue/'+issue_id+'/transitions?expand=transitions.fields',json=data,verify=False)
+				print "successfully change zephr ticekt status to done"
+
+		def update_story_ticket_status(self,list_issue):
+			size=len(list_issue)
+			statuses=["31","51","61"]
+			for status in statuses:
+				data={
+					"transition": {"id": status} 				 
+				}
+				for issue_id  in  list_issue :
+					r = self.jira._session.post(self.jira_server+'rest/api/2/issue/'+issue_id+'/transitions?expand=transitions.fields',json=data,verify=False)
+			print "successfully change user story status to done"		
 
 
 
@@ -314,8 +335,13 @@ if __name__ == "__main__":
 	password="@WSX3edc"
 	routine1=jira_routine(username,password)
 	# #==============================================================================================================================
+	# EX: post ticket transition
+	tickets=["CHPS-4979"]
+	routine1.update_story_ticket_status(list_issue=tickets)
+	# #==============================================================================================================================
+	# #==============================================================================================================================
 	# EX: create work log
-	# tickets=["CHPS-4688","CHPS-4689"]
+	# tickets=["CHPS-4978","CHPS-4979"]
 	# routine1.post_work_log(list_issue=tickets)
 	# #==============================================================================================================================
 	# #Create web portal test and story
