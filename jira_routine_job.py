@@ -149,7 +149,10 @@ class jira_routine:
 					}
 				bugs.append(bug)
 			issues = self.jira.create_issues(field_list=bugs)
-			out = [ issue.get('issue') for issue in issues]
+			print issues
+			# out = [ issue.key for issue in issues]
+			# out = [ issue.get('issue') for issue in issues]
+			out = [ issue.get('issue').key for issue in issues]
 			print  out
 			return  out
 			# self.add_issues_to_sprint(sprint_id, out) 
@@ -293,8 +296,8 @@ class jira_routine:
 
 
 if __name__ == "__main__":
-	username="your username"
-	password="your password"
+	username="dliu"
+	password="@WSX3edc"
 	routine1=jira_routine(username,password)
 	# #==============================================================================================================================
 	# #Create web portal test and story
@@ -303,7 +306,10 @@ if __name__ == "__main__":
 	# 	routine1.webportal_project_version,component=routine1.webportal_project_component,list_story_tickets=tickets)
 	# #==============================================================================================================================
 	# #EX: create bug
-	# routine1.create_bug(assignee_list, summary_list,description_list,routine1.web_portal_sprint_id, routine1.webportal_project_version, routine1.webportal_project_component)
+	# assignee_list=["dliu"]
+	# summary_list=["hey"]
+	# description_list=['pass']
+	# routine1.create_bug(assignee_list, summary_list,description_list)
 	# #==============================================================================================================================
 	# #EX: add attachment
 	#routine1.add_attachment("CHPS-2981", 'test.pdf')
