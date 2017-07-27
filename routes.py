@@ -62,6 +62,7 @@ def uploadfile():
 					else:
 						try:
 							tickets_id=routine.post_zephyr_teststep(ticket=parser.test_tickets,test_step=parser.test_step,test_data=parser.test_data,test_result=parser.test_result)
+							print tickets_id
 						except Exception as e:
 							return render_template('home.html', form=form, ticketTypeError=True)
 						else:
